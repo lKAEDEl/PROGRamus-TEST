@@ -5,22 +5,24 @@
 using namespace std;
 
 vector<int> solution(vector<int> arr) {
-  
-    if (arr.size() == 1) {
-        return {-1};
-    }
-
+    vector<int> answer;             
+    int value = arr[0];
+    int index = 0;
     
-    int minValue = *min_element(arr.begin(), arr.end());
-
-    vector<int> answer;
-
-   
-    for (int i = 0; i < arr.size(); i++) {
-        if (arr[i] != minValue) {
-            answer.push_back(arr[i]);
-        }
+    for(int i = 0; i < arr.size(); i++)
+    {
+        if(arr[i] < value)
+        {
+            value = arr[i];
+            index = i;
+        }   
     }
+   arr.erase(arr.begin() + index);
+   if(arr.size() == 0)
+   {
+       arr.push_back(-1);
+   }
 
-    return answer;
+    return arr;
 }
+
